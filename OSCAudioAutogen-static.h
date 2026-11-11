@@ -1510,6 +1510,7 @@ class OSCAudioInputTDM2 : public AudioInputTDM2, public OSCAudioBase
 #define OSC_CLASS__input_tdm2_h_(a)
 #endif // defined(_input_tdm2_h_)
 
+#if defined(AUDIO_INTERFACE)
 // ============== AudioInputUSB ====================
 class OSCAudioInputUSB : public AudioInputUSB, public OSCAudioBase
 {
@@ -1532,6 +1533,11 @@ class OSCAudioInputUSB : public AudioInputUSB, public OSCAudioBase
           }
 		}
 };
+
+#define OSC_CLASS_AUDIO_INTERFACE(a) OSC_CLASS(a)
+#else
+#define OSC_CLASS_AUDIO_INTERFACE(a)
+#endif // defined(AUDIO_INTERFACE)
 
 #if defined(mixer_h_)
 // ============== AudioMixer4 ====================
@@ -2027,6 +2033,7 @@ class OSCAudioOutputTDM2 : public AudioOutputTDM2, public OSCAudioBase
 #define OSC_CLASS_output_tdm2_h_(a)
 #endif // defined(output_tdm2_h_)
 
+#if defined(AUDIO_INTERFACE)
 // ============== AudioOutputUSB ====================
 class OSCAudioOutputUSB : public AudioOutputUSB, public OSCAudioBase
 {
@@ -2048,6 +2055,11 @@ class OSCAudioOutputUSB : public AudioOutputUSB, public OSCAudioBase
           }
 		}
 };
+
+#define OSC_CLASS_AUDIO_INTERFACE(a) OSC_CLASS(a)
+#else
+#define OSC_CLASS_AUDIO_INTERFACE(a)
+#endif // defined(AUDIO_INTERFACE)
 
 #if defined(play_memory_h_)
 // ============== AudioPlayMemory ====================
@@ -2712,7 +2724,7 @@ class OSCAudioSynthWavetable : public AudioSynthWavetable, public OSCAudioBase
 	OSC_CLASS__input_spdif3_h_(AudioInputSPDIF3) \
 	OSC_CLASS__input_tdm_h_(AudioInputTDM) \
 	OSC_CLASS__input_tdm2_h_(AudioInputTDM2) \
-	OSC_CLASS(AudioInputUSB) \
+	OSC_CLASS_AUDIO_INTERFACE(AudioInputUSB) \
 	OSC_CLASS_mixer_h_(AudioMixer4) \
 	OSC_CLASS_output_ADAT_h_(AudioOutputADAT) \
 	OSC_CLASS_output_dac_h_(AudioOutputAnalog) \
@@ -2731,7 +2743,7 @@ class OSCAudioSynthWavetable : public AudioSynthWavetable, public OSCAudioBase
 	OSC_CLASS_output_SPDIF3_h_(AudioOutputSPDIF3) \
 	OSC_CLASS_output_tdm_h_(AudioOutputTDM) \
 	OSC_CLASS_output_tdm2_h_(AudioOutputTDM2) \
-	OSC_CLASS(AudioOutputUSB) \
+	OSC_CLASS_AUDIO_INTERFACE(AudioOutputUSB) \
 	OSC_CLASS_play_memory_h_(AudioPlayMemory) \
 	OSC_CLASS_play_queue_h_(AudioPlayQueue) \
 	OSC_CLASS_play_sd_raw_h_(AudioPlaySdRaw) \

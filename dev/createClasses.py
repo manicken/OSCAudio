@@ -463,7 +463,12 @@ def processFiles(root,dirs,files):
 for root,dirs,files in os.walk(rp):
     processFiles(root,dirs,files)
 
+beforeUSB = set(d)
 processFiles(ar,[],afl)
+# usb_audio.h uses #pragma once, so no guard is found automatically; its classes
+# only exist if the selected USB type includes audio, so guard on AUDIO_INTERFACE
+for cl in set(d) - beforeUSB:
+    d[cl]['ndef'] = 'AUDIO_INTERFACE'
 print()
 
 ###############################################################################

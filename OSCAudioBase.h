@@ -618,5 +618,16 @@ class OSCAudioGroup : public OSCAudioBase
 #include <OSCAudioAutogen-static.h>
 #endif // defined(DYNAMIC_AUDIO_AVAILABLE)
 
+// Optional objects from other libraries, used when the library is available.
+// Each defines OSC_AUDIO_CLASSES_EXTRA (one OSC_CLASS(...) entry) for the audioTypes[] table.
+#if defined(__has_include)
+#if __has_include(<AudioEffectFPB.h>)
+#include "OSCAudioFPB.h"
+#endif
+#endif
+#if !defined(OSC_AUDIO_CLASSES_EXTRA)
+#define OSC_AUDIO_CLASSES_EXTRA
+#endif
+
 
 #endif // !defined(_OSCAUDIOBASE_H_)

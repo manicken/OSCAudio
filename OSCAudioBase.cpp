@@ -47,6 +47,7 @@ OSCAudioResourceSetting_t OSCAudioBase::settings[rsrc_COUNT] = {0};
 OSCAudioBase* mk1_##o(const char* nm) {return (OSCAudioBase*) new o(nm);} \
 OSCAudioBase* mk2_##o(const char* nm,OSCAudioGroup& grp) {return (OSCAudioBase*) new o(nm,grp);} 
 OSC_AUDIO_CLASSES
+OSC_AUDIO_CLASSES_EXTRA
 #undef OSC_CLASS
 
 // objects with (int) constructors:
@@ -86,6 +87,7 @@ OSC_AUDIO_CHECK_RSRC_LIST
 #define OSC_CLASSif(a,o,c){#a,.root = {.mk_if = mk1_##o},.group = {.mk_if = mk2_##o},checkResource_##c,objcIntFloat},
 const OSCAudioTypes_t OSCAudioBase::audioTypes[] = {
   OSC_AUDIO_CLASSES
+  OSC_AUDIO_CLASSES_EXTRA
   OSC_AUDIO_CLASSESi
   OSC_AUDIO_CLASSESif
   //{"jim",mk1_OSCAudioAmplifier,mk2_OSCAudioAmplifier,checkResource_noRequirementCheck,objcVoid},
@@ -102,6 +104,7 @@ const OSCAudioTypes_t OSCAudioBase::audioTypes[] = {
 #define OSC_CLASSif(a) {#a},
 const OSCAudioTypes_t OSCAudioBase::audioTypes[] = {
   OSC_AUDIO_CLASSES
+  OSC_AUDIO_CLASSES_EXTRA
 };
 #undef OSC_CLASS
 #undef OSC_CLASSi

@@ -1809,6 +1809,7 @@ rsrcState_e OSCAudioInputTDM2::rsrcState;
 #define OSC_AUDIO_CHECK_RSRC__input_tdm2_h_(c)
 #endif // defined(_input_tdm2_h_)
 
+#if defined(AUDIO_INTERFACE)
 // ============== AudioInputUSB ====================
 class OSCAudioInputUSB : public AudioInputUSB, public OSCAudioBase
 {
@@ -1842,6 +1843,12 @@ const OSCAudioResourceCheck_t OSCAudioInputUSB::resources[] = {
 rsrcState_e OSCAudioInputUSB::rsrcState;
 #endif // defined(OSC_RSRC_ENABLE_DEFINE_ARRAYS)
 
+#define OSC_CLASS_AUDIO_INTERFACE(a,o,c) OSC_CLASS(a,o,c)
+#define OSC_AUDIO_CHECK_RSRC_AUDIO_INTERFACE(c) OSC_AUDIO_CHECK_RSRC(c)
+#else
+#define OSC_CLASS_AUDIO_INTERFACE(a,o,c)
+#define OSC_AUDIO_CHECK_RSRC_AUDIO_INTERFACE(c)
+#endif // defined(AUDIO_INTERFACE)
 
 #if defined(DYNMIXER_H_)
 // ============== AudioMixer ====================
@@ -2661,6 +2668,7 @@ rsrcState_e OSCAudioOutputTDM2::rsrcState;
 #define OSC_AUDIO_CHECK_RSRC_output_tdm2_h_(c)
 #endif // defined(output_tdm2_h_)
 
+#if defined(AUDIO_INTERFACE)
 // ============== AudioOutputUSB ====================
 class OSCAudioOutputUSB : public AudioOutputUSB, public OSCAudioBase
 {
@@ -2693,6 +2701,12 @@ const OSCAudioResourceCheck_t OSCAudioOutputUSB::resources[] = {
 rsrcState_e OSCAudioOutputUSB::rsrcState;
 #endif // defined(OSC_RSRC_ENABLE_DEFINE_ARRAYS)
 
+#define OSC_CLASS_AUDIO_INTERFACE(a,o,c) OSC_CLASS(a,o,c)
+#define OSC_AUDIO_CHECK_RSRC_AUDIO_INTERFACE(c) OSC_AUDIO_CHECK_RSRC(c)
+#else
+#define OSC_CLASS_AUDIO_INTERFACE(a,o,c)
+#define OSC_AUDIO_CHECK_RSRC_AUDIO_INTERFACE(c)
+#endif // defined(AUDIO_INTERFACE)
 
 #if defined(play_memory_h_)
 // ============== AudioPlayMemory ====================
@@ -3372,7 +3386,7 @@ class OSCAudioSynthWavetable : public AudioSynthWavetable, public OSCAudioBase
 	OSC_CLASS__input_spdif3_h_(AudioInputSPDIF3,OSCAudioInputSPDIF3,OSCAudioInputSPDIF3) \
 	OSC_CLASS__input_tdm_h_(AudioInputTDM,OSCAudioInputTDM,OSCAudioInputTDM) \
 	OSC_CLASS__input_tdm2_h_(AudioInputTDM2,OSCAudioInputTDM2,OSCAudioInputTDM2) \
-	OSC_CLASS(AudioInputUSB,OSCAudioInputUSB,OSCAudioInputUSB) \
+	OSC_CLASS_AUDIO_INTERFACE(AudioInputUSB,OSCAudioInputUSB,OSCAudioInputUSB) \
 	OSC_CLASS_mixer_h_(AudioMixer4,OSCAudioMixer4,noRequirementCheck) \
 	OSC_CLASS_output_ADAT_h_(AudioOutputADAT,OSCAudioOutputADAT,OSCAudioOutputADAT) \
 	OSC_CLASS_output_dac_h_(AudioOutputAnalog,OSCAudioOutputAnalog,OSCAudioOutputAnalog) \
@@ -3391,7 +3405,7 @@ class OSCAudioSynthWavetable : public AudioSynthWavetable, public OSCAudioBase
 	OSC_CLASS_output_SPDIF3_h_(AudioOutputSPDIF3,OSCAudioOutputSPDIF3,OSCAudioOutputSPDIF3) \
 	OSC_CLASS_output_tdm_h_(AudioOutputTDM,OSCAudioOutputTDM,OSCAudioOutputTDM) \
 	OSC_CLASS_output_tdm2_h_(AudioOutputTDM2,OSCAudioOutputTDM2,OSCAudioOutputTDM2) \
-	OSC_CLASS(AudioOutputUSB,OSCAudioOutputUSB,OSCAudioOutputUSB) \
+	OSC_CLASS_AUDIO_INTERFACE(AudioOutputUSB,OSCAudioOutputUSB,OSCAudioOutputUSB) \
 	OSC_CLASS_play_memory_h_(AudioPlayMemory,OSCAudioPlayMemory,noRequirementCheck) \
 	OSC_CLASS_play_queue_h_(AudioPlayQueue,OSCAudioPlayQueue,noRequirementCheck) \
 	OSC_CLASS_play_sd_raw_h_(AudioPlaySdRaw,OSCAudioPlaySdRaw,noRequirementCheck) \
@@ -3437,7 +3451,7 @@ class OSCAudioSynthWavetable : public AudioSynthWavetable, public OSCAudioBase
 	OSC_AUDIO_CHECK_RSRC__input_spdif3_h_(OSCAudioInputSPDIF3) \
 	OSC_AUDIO_CHECK_RSRC__input_tdm_h_(OSCAudioInputTDM) \
 	OSC_AUDIO_CHECK_RSRC__input_tdm2_h_(OSCAudioInputTDM2) \
-	OSC_AUDIO_CHECK_RSRC(OSCAudioInputUSB) \
+	OSC_AUDIO_CHECK_RSRC_AUDIO_INTERFACE(OSCAudioInputUSB) \
 	OSC_AUDIO_CHECK_RSRC_output_ADAT_h_(OSCAudioOutputADAT) \
 	OSC_AUDIO_CHECK_RSRC_output_dac_h_(OSCAudioOutputAnalog) \
 	OSC_AUDIO_CHECK_RSRC_output_dacs_h_(OSCAudioOutputAnalogStereo) \
@@ -3455,7 +3469,7 @@ class OSCAudioSynthWavetable : public AudioSynthWavetable, public OSCAudioBase
 	OSC_AUDIO_CHECK_RSRC_output_SPDIF3_h_(OSCAudioOutputSPDIF3) \
 	OSC_AUDIO_CHECK_RSRC_output_tdm_h_(OSCAudioOutputTDM) \
 	OSC_AUDIO_CHECK_RSRC_output_tdm2_h_(OSCAudioOutputTDM2) \
-	OSC_AUDIO_CHECK_RSRC(OSCAudioOutputUSB) \
+	OSC_AUDIO_CHECK_RSRC_AUDIO_INTERFACE(OSCAudioOutputUSB) \
 
 
 #endif // !defined(OSC_RSRC_TYPEDEF_ONLY)
